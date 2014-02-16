@@ -11,6 +11,11 @@ class KittensController < ApplicationController
 
   def create
     @kitten = Kitten.new(params[:kitten])
+    if @kitten.save
+      redirect_to(@kitten, success: "@kitten.name created!")
+    else
+      render(:new, notice: 'There was an error creating your kitten.')
+    end
   end
 
   def show
